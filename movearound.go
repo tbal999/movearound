@@ -140,7 +140,7 @@ func move(s string, i [][]int) {
 		}
 
 	} else if s == "gr" {
-		// SHRINK
+		// GROW
 		fmt.Println("Growing the map")
 		i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
 		for in := range i {
