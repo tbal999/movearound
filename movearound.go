@@ -122,16 +122,53 @@ func move(s string, i [][]int) {
 				}
 			}
 		}
+	} else if s == "sh" {
+		// SHRINK
+		fmt.Println("Shrinking the map")
+		for in := range i {
+			hi := len(i[in]) - 1
+			for a := range i[in] {
+				wi := len(i[a]) - 1
+				i := make([][]int, wi)
+				for x := range i {
+					i[x] = make([]int, hi)
+				}
+				editMap(0, 0, i)
+				showMap(i)
+				return
+			}
+		}
+
+	} else if s == "gr" {
+		// SHRINK
+		fmt.Println("Growing the map")
+		i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
+		for in := range i {
+			hi := len(i[in]) + 1
+			for a := range i[in] {
+				wi := len(i[a]) + 1
+				i := make([][]int, wi)
+				for x := range i {
+					i[x] = make([]int, hi)
+				}
+				editMap(0, 0, i)
+				showMap(i)
+				return
+			}
+		}
+
 	}
 }
 
 func main() {
+	print("Start/n")
 	i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
-	editMap(1, 1, i)
+	editMap(0, 0, i)
 	showMap(i)
 	scanner := bufio.NewScanner(os.Stdin)
 	quitthegame := 0
-	fmt.Println("Press w, s, a, d to move the number 2 around the map")
+	fmt.Println("Press w, s, a, d to move the number 2 around the map.")
+	fmt.Println("Type sh or gr to shrink / grow the map.")
 	fmt.Println("Alternatively, press q to quit.")
 	for quitthegame == 0 {
 		fmt.Println("Type below: ")
@@ -148,6 +185,12 @@ func main() {
 			move(result, i)
 		}
 		if result == "d" {
+			move(result, i)
+		}
+		if result == "gr" {
+			move(result, i)
+		}
+		if result == "sh" {
 			move(result, i)
 		}
 		if result == "q" {
