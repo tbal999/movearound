@@ -54,7 +54,7 @@ func move(s string, i [][]int) {
 		// MOVE DOWN
 		fmt.Println("Moving Down")
 		for a := range i {
-			if a != 2 {
+			if a != len(i[a])-1 {
 				for b := range i[a] {
 					if i[a][b] == 2 {
 						i[a][b] = 0
@@ -64,7 +64,7 @@ func move(s string, i [][]int) {
 					}
 				}
 			}
-			if a == 2 {
+			if a == len(i[a])-1 {
 				for b := range i[a] {
 					if i[a][b] == 2 {
 						i[a][b] = 0
