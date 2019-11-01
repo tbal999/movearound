@@ -122,7 +122,7 @@ func move(s string, i [][]int) {
 				}
 			}
 		}
-	} else if s == "sh" {
+	} else if s == "sh" {  // THESE BITS DON'T WORK PROPERLY  
 		// SHRINK
 		fmt.Println("Shrinking the map")
 		for in := range i {
@@ -139,7 +139,7 @@ func move(s string, i [][]int) {
 			}
 		}
 
-	} else if s == "gr" {
+	} else if s == "gr" { // THESE BITS DON'T WORK PROPERLY
 		// GROW
 		fmt.Println("Growing the map")
 		i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
