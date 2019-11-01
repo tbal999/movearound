@@ -130,28 +130,28 @@ func main() {
 	editMap(1, 1, i)
 	showMap(i)
 	scanner := bufio.NewScanner(os.Stdin)
-	x := 0
+	quitthegame := 0
 	fmt.Println("Press w, s, a, d to move the number 2 around the map")
 	fmt.Println("Alternatively, press q to quit.")
-	for x == 0 {
+	for quitthegame == 0 {
 		fmt.Println("Type below: ")
 		fmt.Println("(press q to quit)")
 		scanner.Scan()
 		result := scanner.Text()
 		if result == "w" {
-			move("w", i)
+			move(result, i)
 		}
 		if result == "s" {
-			move("s", i)
+			move(result, i)
 		}
 		if result == "a" {
-			move("a", i)
+			move(result, i)
 		}
 		if result == "d" {
-			move("d", i)
+			move(result, i)
 		}
 		if result == "q" {
-			x = 1
+			quitthegame = 1
 		}
 	}
 }
