@@ -135,7 +135,7 @@ func main() {
 	fmt.Println("Alternatively, press q to quit.")
 	for x == 0 {
 		fmt.Println("Type below: ")
-		fmt.Println("(press q to quit)"
+		fmt.Println("(press q to quit)")
 		scanner.Scan()
 		result := scanner.Text()
 		if result == "w" {
