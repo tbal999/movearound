@@ -6,4 +6,4 @@ You can press w, s, a, d to move forwards/backwards/left/right.
 Press q to quit at any time.
 
 This is just my attempt at re-learning what i learnt in Python in Go.
-uses for loops, while loops (which are for loops in go!), functions, slices, structs (go classes(?)) and if statements
+uses for loops, while loops (which are for loops in go!), functions, slices & if statements 
