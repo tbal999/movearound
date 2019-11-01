@@ -122,7 +122,7 @@ func move(s string, i [][]int) {
 				}
 			}
 		}
-	} else if s == "sh" {  // THESE BITS DON'T WORK PROPERLY  
+	} else if s == "sh" { // THESE BITS DON'T WORK PROPERLY
 		// SHRINK
 		fmt.Println("Shrinking the map")
 		for in := range i {
@@ -161,7 +161,7 @@ func move(s string, i [][]int) {
 }
 
 func main() {
-	print("Start/n")
+	print("Start\n")
 	i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
 	editMap(0, 0, i)
 	showMap(i)
