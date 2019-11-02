@@ -8,7 +8,7 @@ import (
 
 func showMap(i [][]int) {
 	for a := range i {
-		fmt.Println(i[a])
+		fmt.Println(a, i[a])
 	}
 	fmt.Println("")
 }
@@ -50,7 +50,7 @@ func move(s string, i [][]int) {
 				}
 			}
 
-		}
+		} // END MOVE UP
 	case "s":
 		// MOVE DOWN
 		fmt.Println("Moving Down")
@@ -76,7 +76,7 @@ func move(s string, i [][]int) {
 				}
 			}
 
-		}
+		} // END MOVE DOWN
 	case "a":
 		// MOVE LEFT
 		fmt.Println("Moving Left")
@@ -99,7 +99,7 @@ func move(s string, i [][]int) {
 					}
 				}
 			}
-		}
+		} //END MOVE LEFT
 	case "d":
 		// MOVE RIGHT
 		fmt.Println("Moving Right")
@@ -122,9 +122,55 @@ func move(s string, i [][]int) {
 					}
 				}
 			}
+		} //END MOVE RIGHT
+	} //END CASES
+} // END FUNCTION
+
+//ISSUE IS HERE ======================================================================================================================
+func size(s string, i [][]int) [][]int { // This function doesn't work.
+	switch s {
+	case "gr":
+		fmt.Println("Grow")
+		//y := len(i) + 1
+		//x := len(i[0]) + 1
+		for a := range i {
+			if a == 1 {
+				i = append(i, i[a])
+				break
+			}
 		}
+		for a := range i {
+			i[a] = append(i[a], 0)
+		}
+		editMap(0, 0, i)
+		showMap(i)
+		return i
+	case "sh":
+		fmt.Println("Shrink")
+		for a := range i {
+			if a == 1 {
+				if len(i[a]) == 1 {
+					fmt.Println("Too small")
+					return i
+				}
+			}
+		}
+		//y := len(i) + 1
+		//x := len(i[0]) + 1
+		i := i[:len(i)-1]
+		for a := range i {
+			i[a] = i[a][:len(i[a])-1]
+		}
+		editMap(0, 0, i)
+		showMap(i)
+		return i
 	}
+	editMap(0, 0, i)
+	showMap(i)
+	return i
 }
+
+//ISSUE IS HERE ======================================================================================================================
 
 func main() {
 	print("Start\n")
@@ -150,6 +196,12 @@ func main() {
 			move(result, i)
 		case "d":
 			move(result, i)
+		case "gr":
+			size(result, i)
+		case "sh":
+			size(result, i)
+		case "p":
+			showMap(i)
 		case "q":
 			quitthegame = 1
 		}
