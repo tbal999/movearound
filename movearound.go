@@ -18,7 +18,8 @@ func editMap(x, y int, i [][]int) {
 }
 
 func move(s string, i [][]int) {
-	if s == "w" {
+	switch s {
+	case "w":
 		// MOVE UP
 		fmt.Println("Moving Up")
 		for a := range i {
@@ -50,7 +51,7 @@ func move(s string, i [][]int) {
 			}
 
 		}
-	} else if s == "s" {
+	case "s":
 		// MOVE DOWN
 		fmt.Println("Moving Down")
 		for a := range i {
@@ -76,7 +77,7 @@ func move(s string, i [][]int) {
 			}
 
 		}
-	} else if s == "a" {
+	case "a":
 		// MOVE LEFT
 		fmt.Println("Moving Left")
 		for a := range i {
@@ -99,7 +100,7 @@ func move(s string, i [][]int) {
 				}
 			}
 		}
-	} else if s == "d" {
+	case "d":
 		// MOVE RIGHT
 		fmt.Println("Moving Right")
 		for a := range i {
@@ -122,41 +123,6 @@ func move(s string, i [][]int) {
 				}
 			}
 		}
-	} else if s == "sh" { // THESE BITS DON'T WORK PROPERLY
-		// SHRINK
-		fmt.Println("Shrinking the map")
-		for in := range i {
-			hi := len(i[in]) - 1
-			for a := range i[in] {
-				wi := len(i[a]) - 1
-				i := make([][]int, wi)
-				for x := range i {
-					i[x] = make([]int, hi)
-				}
-				editMap(0, 0, i)
-				showMap(i)
-				return
-			}
-		}
-
-	} else if s == "gr" { // THESE BITS DON'T WORK PROPERLY
-		// GROW
-		fmt.Println("Growing the map")
-		i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
-		for in := range i {
-			hi := len(i[in]) + 1
-			for a := range i[in] {
-				wi := len(i[a]) + 1
-				i := make([][]int, wi)
-				for x := range i {
-					i[x] = make([]int, hi)
-				}
-				editMap(0, 0, i)
-				showMap(i)
-				return
-			}
-		}
-
 	}
 }
 
@@ -175,25 +141,16 @@ func main() {
 		fmt.Println("(press q to quit)")
 		scanner.Scan()
 		result := scanner.Text()
-		if result == "w" {
+		switch result {
+		case "w":
 			move(result, i)
-		}
-		if result == "s" {
+		case "s":
 			move(result, i)
-		}
-		if result == "a" {
+		case "a":
 			move(result, i)
-		}
-		if result == "d" {
+		case "d":
 			move(result, i)
-		}
-		if result == "gr" {
-			move(result, i)
-		}
-		if result == "sh" {
-			move(result, i)
-		}
-		if result == "q" {
+		case "q":
 			quitthegame = 1
 		}
 	}
