@@ -6,18 +6,18 @@ import (
 	"os"
 )
 
-func showMap(i [][]int) {
+func showMap(i [][]int) {         //Prints out the 2D slice
 	for a := range i {
 		fmt.Println(a, i[a])
 	}
 	fmt.Println("")
 }
 
-func editMap(x, y int, i [][]int) {
+func editMap(x, y int, i [][]int) {   //Edits the digit at i[x][y] so it's a 2
 	i[x][y] = 2
 }
 
-func move(s string, i [][]int) {
+func move(s string, i [][]int) {   //Moves the number 2 in the slice around, up,down,left,right
 	switch s {
 	case "w":
 		// MOVE UP
@@ -127,7 +127,7 @@ func move(s string, i [][]int) {
 } // END FUNCTION
 
 //ISSUE IS HERE (below \/) ======================================================================================================================
-func size(s string, i [][]int) [][]int { // This function doesn't work.
+func size(s string, i [][]int) [][]int { // This function doesn't work. It's meant the shrink/grow the slice.
 	switch s {
 	case "gr":
 		fmt.Println("Grow")
