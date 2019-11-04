@@ -6,18 +6,26 @@ import (
 	"os"
 )
 
-func showMap(i [][]int) {         //Prints out the 2D slice
+func showMap(i [][]int) { //Prints out the 2D slice
 	for a := range i {
 		fmt.Println(a, i[a])
 	}
 	fmt.Println("")
 }
 
-func editMap(x, y int, i [][]int) {   //Edits the digit at i[x][y] so it's a 2
-	i[x][y] = 2
+func editMap(i [][]int) [][]int { //Edits the digit at i[x][y] so it's a 2
+	for index := range i {
+		for index1 := range i[index] {
+			if i[index][index1] == 2 {
+				i[index][index1] = 0
+			}
+		}
+	}
+	i[0][0] = 2
+	return i
 }
 
-func move(s string, i [][]int) {   //Moves the number 2 in the slice around, up,down,left,right
+func move(s string, i [][]int) { //Moves the number 2 in the slice around, up,down,left,right
 	switch s {
 	case "w":
 		// MOVE UP
@@ -126,56 +134,35 @@ func move(s string, i [][]int) {   //Moves the number 2 in the slice around, up,
 	} //END CASES
 } // END FUNCTION
 
-//ISSUE IS HERE (below \/) ======================================================================================================================
-func size(s string, i [][]int) [][]int { // This function doesn't work. It's meant the shrink/grow the slice.
-	switch s {
+func size(a string, i *[][]int) {
+	m := *i
+	switch a {
 	case "gr":
-		fmt.Println("Grow")
-		//y := len(i) + 1
-		//x := len(i[0]) + 1
-		for a := range i {
-			if a == 1 {
-				i = append(i, i[a])
-				break
-			}
+		newline := make([]int, len(m[0]))
+		m = append(m, newline)
+		for i := range m {
+			m[i] = append(m[i], 0)
 		}
-		for a := range i {
-			i[a] = append(i[a], 0)
-		}
-		editMap(0, 0, i)
-		showMap(i)
-		return i
 	case "sh":
-		fmt.Println("Shrink")
-		for a := range i {
-			if a == 1 {
-				if len(i[a]) == 1 {
-					fmt.Println("Too small")
-					return i
-				}
-			}
+		if len(m) == 1 {
+			fmt.Println("Too Small!")
+			return
 		}
-		//y := len(i) + 1
-		//x := len(i[0]) + 1
-		i := i[:len(i)-1]
-		for a := range i {
-			i[a] = i[a][:len(i[a])-1]
+		m = m[:len(m)-1]
+		for i := range m {
+			m[i] = m[i][:len(m[i])-1]
 		}
-		editMap(0, 0, i)
-		showMap(i)
-		return i
+	default:
+		return
 	}
-	editMap(0, 0, i)
-	showMap(i)
-	return i
+	*i = m
+	editMap(m)
 }
-
-//ISSUE IS HERE (above /\) ======================================================================================================================
 
 func main() {
 	print("Start\n")
 	i := [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}
-	editMap(0, 0, i)
+	editMap(i)
 	showMap(i)
 	scanner := bufio.NewScanner(os.Stdin)
 	quitthegame := 0
@@ -197,9 +184,9 @@ func main() {
 		case "d":
 			move(result, i)
 		case "gr":
-			size(result, i)
+			size(result, &i)
 		case "sh":
-			size(result, i)
+			size(result, &i)
 		case "p":
 			showMap(i)
 		case "q":
